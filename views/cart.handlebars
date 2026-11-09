@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Add To cart </title>
+</head>
+<body>
+ <div class="container mt-5">
+
+    <h2>Shopping Cart</h2>
+
+    <div class="card mb-3">
+        <div class="row g-0">
+
+            <div class="col-md-4">
+                <a href="/">
+                <img src="/uploads/products/{{product.image}}"
+                     class="img-fluid rounded-start"
+                     alt="{{product.product_name}}">
+                     </a>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card-body">
+
+                    <h4>{{product.product_name}}</h4>
+
+                    <p>{{product.description}}</p>
+
+                    <h5 class="text-success">
+                        Unit Price: ₦<span id="price">{{product.price}}</span>
+                    </h5>
+
+                    <form action="/cart/add/{{product.id}}" method="POST">
+
+                        <label>Quantity</label>
+
+                        <input type="number"
+                               name="quantity"
+                               id="quantity"
+                               value="1"
+                               min="1"
+                               max="{{product.quantity}}"
+                               class="form-control mb-3"
+                               style="width:120px">
+
+                        {{!-- <h5 class="text-primary">
+                            Total Amount: ₦<span id="totalAmount">{{product.price}}</span>
+                        </h5> --}}
+
+                        <button type="submit" class="btn btn-warning">
+                            Add to Cart
+                        </button>
+                        <a href="/" class="btn btn-success">
+                            + Shop More
+                        </a>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

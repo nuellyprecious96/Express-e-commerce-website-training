@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{title}}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+    <style>
+        body {
+            background: #f5f6fa;
+        }
+
+        .success-icon {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            background: #d1e7dd;
+            color: #198754;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+            margin: 0 auto 20px;
+        }
+
+        .success-card {
+            border: none;
+            border-radius: 12px;
+        }
+
+        .product-image {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .total-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+
+            <!-- SUCCESS MESSAGE -->
+            <div class="text-center mb-4">
+
+                <div class="success-icon">
+                    <i class="bi bi-check-lg"></i>
+                </div>
+
+                <h2 class="fw-bold text-success">
+                    Order Placed Successfully!
+                </h2>
+
+                <p class="text-muted">
+                    Thank you for shopping with us.
+                    Your order has been received successfully.
+                </p>
+
+                <h5>
+                    Order Number:
+                    <span class="text-primary">#{{order.id}}</span>
+                </h5>
+
+                <span class="badge bg-warning text-dark">
+                    {{order.status}}
+                </span>
+
+            </div>
+
+
+            <!-- ORDER DETAILS -->
+            <div class="card success-card shadow-sm mb-4">
+
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">Order Information</h5>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row mb-3">
+
+                        <div class="col-md-6 mb-3">
+                            <small class="text-muted">Customer Name</small>
+                            <p class="fw-semibold mb-0">
+                                {{order.customer_name}}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <small class="text-muted">Email Address</small>
+                            <p class="fw-semibold mb-0">
+                                {{order.email}}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <small class="text-muted">Phone Number</small>
+                            <p class="fw-semibold mb-0">
+                                {{order.phone}}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <small class="text-muted">Payment Method</small>
+                            <p class="fw-semibold mb-0">
+                                {{order.payment_method}}
+                            </p>
+                        </div>
+
+                        <div class="col-12">
+                            <small class="text-muted">Delivery Address</small>
+                            <p class="fw-semibold mb-0">
+                                {{order.address}}
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- ORDERED PRODUCTS -->
+            <div class="card success-card shadow-sm mb-4">
+
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">Products Ordered</h5>
+                </div>
+
+                <div class="card-body">
+
+                    {{#each items}}
+
+                    <div class="d-flex align-items-center border-bottom py-3">
+
+                        <div class="flex-shrink-0">
+                            <div class="bg-light rounded d-flex align-items-center justify-content-center"
+                                 style="width:65px;height:65px;">
+                                <i class="bi bi-box-seam fs-3 text-secondary"></i>
+                            </div>
+                        </div>
+
+                        <div class="ms-3 flex-grow-1">
+
+                            <h6 class="mb-1">
+                                {{this.product_name}}
+                            </h6>
+
+                            <small class="text-muted">
+                                Quantity: {{this.quantity}}
+                            </small>
+
+                            <p class="mb-0 text-muted">
+                                ₦{{this.price}} each
+                            </p>
+
+                        </div>
+
+                        <div class="fw-bold">
+                            ₦{{this.subtotal}}
+                        </div>
+
+                    </div>
+
+                    {{/each}}
+
+
+                    <!-- TOTAL -->
+                    <div class="total-section p-3 mt-3">
+
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal</span>
+                            <span>₦{{order.subtotal}}</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Shipping Fee</span>
+                            <span>₦{{order.shipping_fee}}</span>
+                        </div>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between fw-bold fs-5">
+                            <span>Total</span>
+                            <span class="text-success">
+                                ₦{{order.total}}
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- BUTTONS -->
+            <div class="text-center">
+
+                <a href="/products" class="btn btn-primary px-4">
+                    <i class="bi bi-cart"></i>
+                    Continue Shopping
+                </a>
+
+                <button onclick="window.print()"
+                        class="btn btn-outline-secondary px-4">
+                    <i class="bi bi-printer"></i>
+                    Print Receipt
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

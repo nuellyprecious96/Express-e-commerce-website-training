@@ -1,0 +1,199 @@
+<div class="container py-5">
+
+    <h2 class="mb-4">Checkout</h2>
+
+    {{#if error}}
+        <div class="alert alert-danger">
+            {{error}}
+        </div>
+    {{/if}}
+
+    <form action="/checkout" method="POST">
+
+        <div class="row">
+
+            <!-- Customer Details -->
+            <div class="col-md-7">
+
+                <div class="card shadow-sm mb-4">
+
+                    <div class="card-header bg-dark text-white">
+                        Customer Information
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="mb-3">
+                            <label>Full Name</label>
+                            <input type="text"
+                                   name="customer_name"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Email Address</label>
+                            <input type="email"
+                                   name="customer_email"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Phone Number</label>
+                            <input type="text"
+                                   name="customer_phone"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- Delivery Address -->
+                <div class="card shadow-sm mb-4">
+
+                    <div class="card-header bg-dark text-white">
+                        Delivery Information
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="mb-3">
+                            <label>Delivery Address</label>
+                            <textarea name="delivery_address"
+                                      class="form-control"
+                                      rows="3"
+                                      required></textarea>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label>City</label>
+                                <input type="text"
+                                       name="city"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label>State</label>
+                                <input type="text"
+                                       name="state"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- Payment Method -->
+                <div class="card shadow-sm mb-4">
+
+                    <div class="card-header bg-dark text-white">
+                        Payment Method
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="form-check">
+                            <input type="radio"
+                                   name="payment_method"
+                                   value="cash_on_delivery"
+                                   class="form-check-input"
+                                   checked>
+
+                            <label class="form-check-label">
+                                Cash on Delivery
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Order Summary -->
+            <div class="col-md-5">
+
+                <div class="card shadow-sm">
+
+                    <div class="card-header bg-dark text-white">
+                        Your Order
+                    </div>
+
+                    <div class="card-body">
+
+                        {{#each products}}
+
+                            <div class="d-flex justify-content-between mb-3">
+
+                                <div>
+                                    <strong>{{this.name}}</strong>
+                                    <br>
+                                    <small>
+                                        Quantity: {{this.quantity}}
+                                    </small>
+                                </div>
+
+                                <span>
+                                    ₦{{this.lineTotal}}
+                                </span>
+
+                            </div>
+
+                        {{/each}}
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between">
+                            <span>Subtotal</span>
+                            <strong>₦{{subtotal}}</strong>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-2">
+                            <span>Shipping</span>
+                            <strong>₦{{shippingFee}}</strong>
+                        </div>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between mb-4">
+                            <h5>Total</h5>
+                            <h5 class="text-success">
+                                ₦{{total}}
+                            </h5>
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-warning btn-lg w-100">
+                            Place Order
+                        </button>
+
+                        <a href="/cart"
+                           class="btn btn-outline-secondary w-100 mt-2">
+                            Return to Cart
+                        </a>
+
+                        {{!-- checkout  --}}
+                        <a href="/checkout"
+                        class="btn btn-warning btn-lg w-100">
+                            Proceed to Checkout
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>

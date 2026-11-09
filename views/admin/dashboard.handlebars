@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Admin</title>
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Sidebar -->
+            <aside class="col-md-3 col-lg-2 bg-dark min-vh-100 p-3">
+
+                <h4 class="text-white mb-4">
+                    Admin Panel
+                </h4>
+
+                <ul class="nav nav-pills flex-column gap-2">
+
+                    <li class="nav-item">
+                        <a href="/admin" class="nav-link active">
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/member" class="nav-link text-white">
+                            Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/createcategory" class="nav-link text-white">
+                           + Create Category
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/createproduct" class="nav-link text-white">
+                            + Create Product
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/show/products" class="nav-link text-white">
+                            + Show product
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/admin/settings" class="nav-link text-white">
+                            + Settings
+                        </a>
+                    </li>
+
+                    <li class="nav-item mt-4">
+                        <a href="/" class="nav-link text-white">
+                           + Back to Website
+                        </a>
+                    </li>
+                    <li class="btn btn-outline-danger mt-4">
+                        <a href="/auth/logout" class="nav-link text-white">
+                           + Logout
+                        </a>
+                    </li>
+
+                </ul>
+
+            </aside>
+
+
+            <!-- Main Content -->
+            <main class="col-md-9 col-lg-10 bg-light min-vh-100 p-4">
+
+                <!-- Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                    <div>
+                        <h2 class="fw-bold mb-1">
+                            Admin Dashboard
+                        </h2>
+
+                        <p class="text-muted mb-0">
+                            Welcome to your administration panel.
+                        </p>
+                    </div>
+
+                    <a href="/" class="btn btn-primary">
+                        <i class="bi bi-house"></i>
+                        Website
+                    </a>
+
+                </div>
+
+
+                <!-- Statistics -->
+                <div class="row g-4 mb-4">
+
+                    <!-- Total Users -->
+                    <div class="col-sm-6 col-xl-4">
+
+                        <div class="card border-0 shadow-sm h-100">
+
+                            <div class="card-body">
+
+                                <div class="d-flex justify-content-between">
+
+                                    <div>
+                                        <p class="text-muted mb-2">
+                                            {{totalUsers}}
+                                            Total Users
+                                        </p>
+
+                                        <h2 class="fw-bold mb-3">
+
+                                        </h2>
+                                    </div>
+
+                                    <div class="bg-primary bg-opacity-10 text-primary
+                                            rounded-circle d-flex align-items-center
+                                            justify-content-center" style="width:50px;height:50px;">
+
+                                        <i class="bi bi-people fs-4"></i>
+
+                                    </div>
+
+                                </div>
+
+                                <a href="/admin/users" class="btn btn-sm btn-primary">
+                                    Manage Users
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Administrators -->
+                    <div class="col-sm-6 col-xl-4">
+
+                        <div class="card border-0 shadow-sm h-100">
+
+                            <div class="card-body">
+
+                                <div class="d-flex justify-content-between">
+
+                                    <div>
+                                        <p class="text-muted mb-2">
+                                            {{totalAdmin}}
+                                            Administrators
+                                        </p>
+
+                                        <h2 class="fw-bold mb-3">
+
+                                        </h2>
+                                    </div>
+
+                                    <div class="bg-danger bg-opacity-10 text-danger
+                                            rounded-circle d-flex align-items-center
+                                            justify-content-center" style="width:50px;height:50px;">
+
+                                        <i class="bi bi-shield-lock fs-4"></i>
+
+                                    </div>
+
+                                </div>
+
+                                <span class="badge bg-danger">
+                                    Admin Accounts
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Regular Users -->
+                    <div class="col-sm-6 col-xl-4">
+
+                        <div class="card border-0 shadow-sm h-100">
+
+                            <div class="card-body">
+
+                                <div class="d-flex justify-content-between">
+
+                                    <div>
+                                        <p class="text-muted mb-2">
+                                            {{totalRegular}}
+                                            Regular Users
+                                        </p>
+
+                                        <h2 class="fw-bold mb-3">
+
+                                        </h2>
+                                    </div>
+
+                                    <div class="bg-success bg-opacity-10 text-success
+                                            rounded-circle d-flex align-items-center
+                                            justify-content-center" style="width:50px;height:50px;">
+
+                                        <i class="bi bi-person-check fs-4"></i>
+
+                                    </div>
+
+                                </div>
+
+                                <span class="badge bg-success">
+                                    Active Users
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Quick Actions -->
+                <div class="card border-0 shadow-sm">
+
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0 fw-bold">
+                            Quick Actions
+                        </h5>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-4">
+
+                                <a href="/member" class="btn btn-outline-primary w-100 py-3">
+
+                                    <i class="bi bi-people fs-5"></i>
+                                    <br>
+
+                                    Manage Users
+
+                                </a>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <a href="/admin/settings" class="btn btn-outline-secondary w-100 py-3">
+
+                                    <i class="bi bi-gear fs-5"></i>
+                                    <br>
+
+                                    Settings
+
+                                </a>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <a href="/" class="btn btn-outline-success w-100 py-3">
+
+                                    <i class="bi bi-house fs-5"></i>
+                                    <br>
+
+                                    View Website
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                {{!-- all users --}}
+                <div>
+                    <h5 class="mb-0 fw-bold">All Users</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Created_At</th>
+                                <th scope="col">Update_At</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each users}}
+                            <tr>
+                                <th scope="row">{{this.id}}</th>
+                                <td>{{this.name}}</td>
+                                <td>{{this.role}}</td>
+                                <td>{{this.email}}</td>
+                                <td>{{this.created_at}}</td>
+                                <td>{{this.updated_at}}</td>
+                                <td>
+                                    <a href="" class="btn btn-success">Edit</a>
+                                    <a href="" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+
+                </div>
+            </main>
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
